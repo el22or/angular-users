@@ -1,0 +1,74 @@
+.c-users {
+  display: grid;
+  grid-template-rows: min-content auto;
+  height: 100%;
+}
+
+.c-users__header {
+  align-items: center;
+  border-bottom: solid 1px #ccc;
+  display: grid;
+  grid-template-columns: auto min-content;
+  padding-block: 20px;
+  padding-inline: 20px;
+}
+
+.c-users__header-title {
+  line-height: 1;
+  margin: 0;
+}
+
+.c-users__body {
+  overflow-y: auto;
+  padding-block: 20px;
+  padding-inline: 20px;
+}
+
+.c-users__table {
+}
+
+.c-users__dialog {
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 40px rgb(0 0 0 / 0.5);
+  display: grid;
+  grid-template-rows: min-content auto min-content;
+  height: auto;
+  inset: 80px;
+  padding: 0;
+  position: fixed;
+  width: auto;
+  z-index: 300;
+}
+
+.c-users__dialog-header {
+  display: grid;
+  grid-template-columns: auto min-content;
+  padding-block: 20px;
+  padding-inline: 20px;
+}
+
+.c-users__dialog-header-title {
+  line-height: 1;
+  margin: 0;
+}
+
+.c-users__dialog-action {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.c-users__dialog-body {
+  overflow-y: auto;
+  padding-block: 20px;
+  padding-inline: 20px;
+}
+
+.c-users__dialog-footer {
+  border-top: solid 1px #ccc;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  padding-block: 20px;
+  padding-inline: 20px;
+}

@@ -1,0 +1,77 @@
+/* You can add global styles to this file, and also import other style files */
+html {
+  box-sizing: border-box;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+*:not(html) {
+  box-sizing: inherit;
+
+  &::before,
+  &::after {
+    box-sizing: inherit;
+  }
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  overflow-y: auto;
+  padding: 0;
+}
+
+table {
+  border-collapse: collapse;
+  max-width: 100%;
+}
+
+tr {
+  border-bottom: 1px solid #ddd;
+}
+
+thead tr {
+  background-color: #ccc;
+}
+
+td, th {
+  padding: 5px;
+}
+
+th {
+  text-align: left;
+}
+
+button {
+  appearance: none;
+  align-items: center;
+  background-color: #ccc;
+  border: none;
+  border-radius: 4px;
+  color: #333;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 0.875rem;
+  height: 38px;
+  line-height: 1;
+  justify-content: center;
+  min-width: 120px;
+  padding-inline: 20px;
+  transition: {
+    duration: 0.15s;
+    property: background-color;
+    timing-function: ease;
+  }
+  white-space: nowrap;
+
+  &:hover {
+    background-color: #bbb;
+  }
+}
+
+.u-disabled {
+  opacity: 0.3;
+  pointer-events: none;
+  user-select: none;
+}

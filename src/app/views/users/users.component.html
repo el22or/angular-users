@@ -1,0 +1,73 @@
+<article class="c-users">
+  <div class="c-users__header">
+    <h1 class="c-users__header-title">List Of Users</h1>
+    <div class="c-users__header-actions">
+      <button class="c-users__header-action"
+        [ngClass]="[
+          (isAddUserDisabled$ | async) ? 'u-disabled' : ''
+        ]"
+        (click)="dialogOpen()" [disabled]="isAddUserDisabled$ | async"
+      >Add User</button>
+    </div>
+  </div>
+  <div class="c-users__body">
+    <ng-container *ngIf="(isLoading$ | async)">
+      Loading...
+    </ng-container>
+    <ng-container *ngIf="!(isLoading$ | async)">
+      <table class="c-users__table">
+        <thead>
+        <tr class="c-users__table-thead-tr">
+          <th>ID</th>
+          <th>Name</th>
+          <th>Active</th>
+          <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let user of users$ | async">
+          <td>{{ user.id }}</td>
+          <td>{{ user.name }}</td>
+          <td>
+            <input type="checkbox" [checked]="user.active" (change)="onChangeActive($event, user)">
+          </td>
+          <td>
+            <button (click)="delete(user)">Remove</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </ng-container>
+  </div>
+</article>
+
+<dialog open class="c-users__dialog" *ngIf="dialogIsOpen">
+  <div class="c-users__dialog-header">
+    <h1 class="c-users__dialog-header-title">Add User</h1>
+    <div class="c-users__dialog-header-actions">
+      <button class="c-users__dialog-header-action" (click)="dialogClose()">X</button>
+    </div>
+  </div>
+  <div class="c-users__dialog-body">
+    <form class="c-users__dialog-form" [formGroup]="form">
+      <div class="c-users__dialog-form-group">
+        <label class="c-users__dialog-form-label">Name</label>
+        <input class="c-users__dialog-form-input" type="text" [formControlName]="'name'">
+        <ng-container *ngIf="form.controls['name'].invalid && (form.controls['name'].dirty || form.controls['name'].touched)">
+          <ul>
+            <li *ngIf="!form.controls['name'].hasError('nameTaken')">Field is required!</li>
+            <li *ngIf="form.controls['name'].hasError('nameTaken')">That name is already in use. Please enter different name.</li>
+          </ul>
+        </ng-container>
+      </div>
+      <div class="c-users__dialog-form-group">
+        <label class="c-users__dialog-form-label">Active</label>
+        <input class="c-users__dialog-form-input" type="checkbox" [formControlName]="'active'">
+      </div>
+    </form>
+  </div>
+  <div class="c-users__dialog-footer">
+    <button class="c-users__dialog-footer-button" (click)="save()" [disabled]="form.valid" [ngClass]="[!form.valid ? 'u-disabled' : '']">Save</button>
+    <button class="c-users__dialog-footer-button" (click)="cancel()">Cancel</button>
+  </div>
+</dialog>
